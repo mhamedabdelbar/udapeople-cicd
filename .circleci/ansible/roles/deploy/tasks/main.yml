@@ -4,6 +4,11 @@
     path: ~/backend-app
     state: directory
 
+- name: "List Dir"
+  shell: |
+    ls
+    ls /home/circleci/project/.circleci/ansible/roles/deploy/files/
+
 - name: "Unarchive backend files"
   become: true
   become_method: sudo
