@@ -282,10 +282,19 @@ jobs:
       - install-awscli
       - install-nodejs
       - install-ansible
+      - add_ssh_keys:
+          fingerprints: [""]
+      - attach_workspace:
+          at:~/
       - restore_cache:
           keys: [backend-dependency]
       - run:
           name: Install dependencies
+          command: |
+            cd backend
+            npm install
+      - run:
+          name: Package Backend
           command: |
             cd backend
             npm run build
