@@ -298,7 +298,7 @@ jobs:
           command: |
             cd backend
             npm run build
-            sudo tar -czf artifact.tar.gz dist/* package*
+            tar -czf artifact.tar.gz dist/* package*
 
             ls
             cd ..
