@@ -281,6 +281,7 @@ jobs:
       - checkout
       - install-awscli
       - install-nodejs
+      - install-ansible
       - restore_cache:
           keys: [backend-dependency]
       - run:
