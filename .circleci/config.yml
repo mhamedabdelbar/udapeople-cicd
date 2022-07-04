@@ -36,26 +36,29 @@ commands:
             aws cloudformation delete-stack --stack-name udapeople-backend-<< parameters.Workflow_ID >>
             aws s3 rm s3://udapeople-<<parameters.Workflow_ID>> --recursive
             aws cloudformation delete-stack --stack-name udapeople-frontend-<< parameters.Workflow_ID >>
-
+            
   revert-migrations:
     description: Revert the last migration if successfully run in the current workflow.
     parameters:
-      Workflow_ID:
+     #  Add parameter here
+      workflow_id:
         type: string
-        default: ${CIRCLE_WORKFLOW_ID:0:7}  
+        default: ${CIRCLE_WORKFLOW_ID:0:7}
     steps:
       - run:
           name: Revert migrations
+          # Add when this will run
           when: on_fail
           command: |
-            SUCCESS=$(curl --insecure  https://kvdb.io/Lq1ggVMwVdAf7NWkcEUU5q/migration_<< parameters.workflow_id >>)
-            if (( $SUCCESS == 1 ));
+            # Curl command here to see if there was a successful migration associated with the workflow id, store result in SUCCESS variable
+            # SUCCESS=$(curl -H "token: ecdfc255-81e1-4056-9efa-2d7fa10812e1" \
+            # --request GET https://api.memstash.io/values/DB_MIGRATION_<< parameters.workflow_id >>)
+            SUCCESS=$(curl --insecure https://kvdb.io/Lq1ggVMwVdAf7NWkcEUU5q/migration_<< parameters.workflow_id >>)
+            if(( $SUCCESS==1 )); 
             then
-                cd ~/project/backend
-                npm install
-                npm run migration:revert
-            fi 
-            
+            cd backend
+            npm run migrations:revert
+            fi         
 jobs:
   build-frontend:
     docker:
