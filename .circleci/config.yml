@@ -196,9 +196,9 @@ jobs:
       - checkout
       - install-ansible
       - add_ssh_keys:
-        fingerprints: ["60:87:aa:47:47:cb:c4:ec:9d:3d:4c:69:a9:6a:9f:9e"]
+          fingerprints: ["60:87:aa:47:47:cb:c4:ec:9d:3d:4c:69:a9:6a:9f:9e"]
       - attach_workspace:
-        at: ~/
+          at: ~/
       - run:
           name: Configure server
           command: |
