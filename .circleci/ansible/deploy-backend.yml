@@ -3,7 +3,6 @@
 - name: "deployment play." 
   hosts: web
   remote_user: ubuntu
-  user: ubuntu
   become: true
   become_method: sudo
   gather_facts: false
