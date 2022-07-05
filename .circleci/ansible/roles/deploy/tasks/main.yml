@@ -7,7 +7,7 @@
 - name: "List Dir"
   shell: |
     ls
-    ls /home/circleci/project/.circleci/ansible/roles/deploy/files/
+    pwd
 
 - name: "Unarchive backend files"
   become: true
