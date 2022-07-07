@@ -328,14 +328,6 @@ jobs:
       - install-nodejs
       - install-ansible
       - run:
-          name: Install dependencies
-          command: |
-            # your code here
-      - run:
-          name: Get backend url
-          command: |
-            # your code here
-      - run:
           name: Backend smoke test.
           command: |
             BACKEND_PUBLIC_IP=$(aws ec2 describe-instances \
@@ -360,6 +352,8 @@ jobs:
             else
               exit 0
             fi
+      - destroy-environment
+      - revert-migrations 
 
 #   cloudfront-update:
 #     docker:
